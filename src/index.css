@@ -1,5 +1,13 @@
 body {
-  background-color: #282c34;
+  background-color: var(--color-palette-blue);
   font-family: 'Bubbler One', sans-serif;
   font-family: 'Ubuntu Mono', monospace;
+}
+
+:root {
+  --color-palette-blue: #495867;
+  --color-palette-brown: #c18c5d;
+  --color-palette-red: #ce796b;
+  --color-palette-rosa: #e7ad99;
+  --color-palette-mocha: #ecc8af;
 }
