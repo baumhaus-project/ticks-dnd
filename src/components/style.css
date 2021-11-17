@@ -2,22 +2,30 @@ li {
   list-style-type: none;
 }
 
-.list {
-  background-color: #21252b;
-  margin: 3em;
+.column {
+  background-color: var(--color-palette-mocha);
+  color: var(--color-palette-mocha);
+  box-shadow: 0em 0.5em var(--color-palette-rosa);
+  margin: 1em;
   padding: 1em;
-  max-width: 16em;
+  border-radius: 1em;
+}
+
+.column-title {
+  margin-left: 1em;
+  color: var(--color-palette-blue);
+}
+
+.list {
+  padding: 0;
+  min-width: 16em;
 }
 
 .card {
-  background-color: #646464;
+  background-color: var(--color-palette-red);
+  box-shadow: 0.25em 0.25em var(--color-palette-blue);
   margin: 1em;
   padding: 1em;
   max-width: 16em;
-}
-
-.card > h3,
-h4,
-p {
-  color: white;
+  border-radius: 1em;
 }

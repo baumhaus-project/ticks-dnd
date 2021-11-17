@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import DroppableList from '../components/DroppableList';
+import './style.css';
 
 function item({ title, customer, assignees, description }) {
   return { id: uuidv4(), title, customer, assignees, description };
@@ -35,10 +36,21 @@ const data = [
   }),
 ];
 
+function column({ title }) {
+  return { id: uuidv4(), title };
+}
+
+const columns = [
+  column({ title: 'Mailbox' }),
+  column({ title: 'In Progress' }),
+  column({ title: 'Done' }),
+];
+
 export default function Kanban() {
   const [cards, updateCards] = useState(data);
 
   const handleOnDragEnd = (result) => {
+    console.log(result);
     if (!result.destination) return;
     const items = Array.from(cards);
     const [reorderedItem] = items.splice(result.source.index, 1);
@@ -47,8 +59,12 @@ export default function Kanban() {
   };
 
   return (
-    <DragDropContext onDragEnd={handleOnDragEnd}>
-      <DroppableList items={cards} />
-    </DragDropContext>
+    <div className="Kanban">
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        {columns.map((col) => (
+          <DroppableList key={uuidv4()} items={cards} column={col} />
+        ))}
+      </DragDropContext>
+    </div>
   );
 }

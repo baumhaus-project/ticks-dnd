@@ -13,9 +13,9 @@ export default function DraggableCard({ item, index }) {
           ref={provided.innerRef}
         >
           <div className="card">
-            <h3>{item.title}</h3>
-            <h4>{item.customer}</h4>
-            <p>{item.assignees}</p>
+            <h3>Titel: {item.title}</h3>
+            <h4>Customer: {item.customer}</h4>
+            <p>Assignees: {item.assignees}</p>
           </div>
         </li>
       )}
