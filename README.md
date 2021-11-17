@@ -1,10 +1,10 @@
-# Vite-React-Template
+# ticks-dnd
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/bastiannispel/vite-react-template)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bastiannispel/vite-react-template/ci?label=ci)
-![GitHub last commit](https://img.shields.io/github/last-commit/bastiannispel/vite-react-template)
-![GitHub issues](https://img.shields.io/github/issues/bastiannispel/vite-react-template)
-![GitHub repo size](https://img.shields.io/github/repo-size/bastiannispel/vite-react-template)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/baumhaus-project/ticks-dnd)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/baumhaus-project/ticks-dnd/ci?label=ci)
+![GitHub last commit](https://img.shields.io/github/last-commit/baumhaus-project/ticks-dnd)
+![GitHub issues](https://img.shields.io/github/issues/baumhaus-project/ticks-dnd)
+![GitHub repo size](https://img.shields.io/github/repo-size/baumhaus-project/ticks-dnd)
 
 This is a barebone project template for [React](https://reactjs.org/) apps using [Vite](https://vitejs.dev/) as a build tool and the [airbnb configuration for eslint](https://www.npmjs.com/package/eslint-config-airbnb) as well as [prettier](https://prettier.io/) for code formatting and [husky](https://github.com/typicode/husky) to setup git hooks. It comes with a basic github workflow that runs eslint and checks the formatting of the code.
 

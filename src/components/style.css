@@ -1,0 +1,23 @@
+li {
+  list-style-type: none;
+}
+
+.list {
+  background-color: #21252b;
+  margin: 3em;
+  padding: 1em;
+  max-width: 16em;
+}
+
+.card {
+  background-color: #646464;
+  margin: 1em;
+  padding: 1em;
+  max-width: 16em;
+}
+
+.card > h3,
+h4,
+p {
+  color: white;
+}
