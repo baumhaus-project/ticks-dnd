@@ -1,0 +1,25 @@
+{
+  "root": true,
+
+  "plugins": ["react", "import"],
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:prettier/recommended",
+    "plugin:import/recommended"
+  ],
+
+  "rules": {
+    "react/no-danger": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/function-component-definition": "off",
+    "prettier/prettier": "off",
+    "no-console": "error"
+  },
+
+  "env": {
+    "node": true,
+    "browser": true,
+    "amd": true
+  }
+}
