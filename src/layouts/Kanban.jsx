@@ -1,58 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useStoreState, useStoreActions } from 'easy-peasy';
 import { v4 as uuidv4 } from 'uuid';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import DroppableList from '../components/DroppableList';
 import './style.css';
 
-function item({ title, customer, assignees, description }) {
-  return { id: uuidv4(), title, customer, assignees, description };
-}
-
-function column({ title, cards }) {
-  return { id: uuidv4(), title, cards };
-}
-
-const columns = [
-  column({
-    title: 'Mailbox',
-    cards: [
-      item({
-        title: 'CardA',
-        customer: 'CustomerA',
-        assignees: 'EmployerA',
-        description: 'This is the description of CardA',
-      }),
-      item({
-        title: 'CardB',
-        customer: 'CustomerA',
-        assignees: 'EmployerA',
-        description: 'This is the description of CardB',
-      }),
-      item({
-        title: 'CardC',
-        customer: 'CustomerB',
-        assignees: 'EmployerC',
-        description: 'This is the description of CardC',
-      }),
-    ],
-  }),
-  column({
-    title: 'In Progress',
-    cards: [
-      item({
-        title: 'CardD',
-        customer: 'CustomerC',
-        assignees: 'EmployerB',
-        description: 'This is the description of CardD',
-      }),
-    ],
-  }),
-  column({ title: 'Done', cards: [] }),
-];
-
 export default function Kanban() {
-  const [data, updateData] = useState(columns);
+  const { data } = useStoreState((state) => state);
+  const { updateData } = useStoreActions((actions) => actions);
 
   const handleOnDragEnd = (result) => {
     const { source, destination } = result;
@@ -72,14 +28,14 @@ export default function Kanban() {
       items.splice(destination.index, 0, reorderedItem);
 
       // update state
-      updateData((prev) => [
-        ...prev.slice(0, index),
-        { ...prev[index], cards: items },
-        ...prev.slice(index + 1),
+      updateData([
+        ...data.slice(0, index),
+        { ...data[index], cards: items },
+        ...data.slice(index + 1),
       ]);
     }
 
-    // Movement from one array to another
+    // Move from one array to another
     else {
       // index of source object within array
       const srcIndex = data.findIndex((x) => x.id === source.droppableId);
@@ -95,12 +51,12 @@ export default function Kanban() {
       // update state
       const firstIndex = index > srcIndex ? srcIndex : index;
       const secondIndex = index > srcIndex ? index : srcIndex;
-      updateData((prev) => [
-        ...prev.slice(0, firstIndex),
-        { ...prev[firstIndex], cards: index > srcIndex ? srcItems : items },
-        ...prev.slice(firstIndex + 1, secondIndex),
-        { ...prev[secondIndex], cards: index > srcIndex ? items : srcItems },
-        ...prev.slice(secondIndex + 1),
+      updateData([
+        ...data.slice(0, firstIndex),
+        { ...data[firstIndex], cards: index > srcIndex ? srcItems : items },
+        ...data.slice(firstIndex + 1, secondIndex),
+        { ...data[secondIndex], cards: index > srcIndex ? items : srcItems },
+        ...data.slice(secondIndex + 1),
       ]);
     }
   };

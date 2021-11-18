@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import { useStoreActions } from 'easy-peasy';
 import { v4 as uuidv4 } from 'uuid';
 import { PropTypes } from 'prop-types';
 import { Droppable } from 'react-beautiful-dnd';
@@ -8,18 +9,45 @@ import DraggableCard from './DraggableCard';
 import './style.css';
 
 export default function DroppableList({ column }) {
+  const { addCard } = useStoreActions((actions) => actions);
+
   return (
     <Droppable droppableId={column.id}>
       {(provided) => (
         <div className="column">
-          <h2 className="column-title">{column.title}</h2>
+          <div className="column-header">
+            <h2 className="column-title">{column.title}</h2>
+            <button
+              className="add-btn"
+              type="button"
+              onClick={() =>
+                addCard({
+                  listId: column.id,
+                  card: {
+                    id: uuidv4(),
+                    title: '',
+                    customer: '',
+                    assignees: '',
+                    description: '',
+                  },
+                })
+              }
+            >
+              Add
+            </button>
+          </div>
           <ul
             className="list"
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
             {column.cards.map((item, index) => (
-              <DraggableCard item={item} index={index} key={uuidv4()} />
+              <DraggableCard
+                item={item}
+                listId={column.id}
+                index={index}
+                key={uuidv4()}
+              />
             ))}
             {provided.placeholder}
           </ul>

@@ -1,5 +1,8 @@
 li {
   list-style-type: none;
+  flex-direction: column;
+  position: relative;
+  display: flex;
 }
 
 .column {
@@ -10,9 +13,15 @@ li {
   border-radius: 1em;
 }
 
-.column-title {
-  margin-left: 1em;
+.column-header {
   color: var(--color-palette-blue);
+  display: flex;
+  margin: 0em 1em;
+  align-items: center;
+}
+
+.column-title {
+  flex-grow: 1;
 }
 
 .list {
@@ -27,4 +36,26 @@ li {
   padding: 1em;
   max-width: 16em;
   border-radius: 1em;
+}
+
+.add-btn {
+  background-color: var(--color-palette-blue);
+  color: var(--color-palette-mocha);
+  border-color: var(--color-palette-brown);
+  border-radius: 1em;
+  border-width: 0.25em;
+  padding: 0.25em 1em;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background-color: var(--color-palette-mocha);
+  color: var(--color-palette-blue);
+  border-color: var(--color-palette-brown);
+  border-radius: 1em;
+  border-width: 0.25em;
+  cursor: pointer;
+  position: absolute;
+  right: 2em;
+  top: 2em;
 }

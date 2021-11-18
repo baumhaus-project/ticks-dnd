@@ -1,0 +1,47 @@
+[
+  {
+    "id": "4abd5bdf-c269-4d49-845f-63cdedd10478",
+    "title": "Mailbox",
+    "cards": [
+      {
+        "id": "69ff6e04-a964-400c-aa08-4ac79d3293d3",
+        "title": "CardA",
+        "customer": "CustomerA",
+        "assignees": "EmployerA",
+        "description": "This is the description of CardA"
+      },
+      {
+        "id": "997486ea-cb29-4171-8e89-0ebd377921c0",
+        "title": "CardB",
+        "customer": "CustomerA",
+        "assignees": "EmployerA",
+        "description": "This is the description of CardB"
+      },
+      {
+        "id": "b588ecb9-7aa2-4b18-b84d-93f11a06ad82",
+        "title": "CardC",
+        "customer": "CustomerB",
+        "assignees": "EmployerC",
+        "description": "This is the description of CardC"
+      }
+    ]
+  },
+  {
+    "id": "4e715036-e529-48be-a42a-68d591ab60ba",
+    "title": "In Progress",
+    "cards": [
+      {
+        "id": "63fabe95-4a89-4077-962c-bb93ccb4c403",
+        "title": "CardD",
+        "customer": "CustomerC",
+        "assignees": "EmployerB",
+        "description": "This is the description of CardD"
+      }
+    ]
+  },
+  {
+    "id": "f01fc5b5-2e8d-4602-bc55-e8a69893f478",
+    "title": "Done",
+    "cards": []
+  }
+]
