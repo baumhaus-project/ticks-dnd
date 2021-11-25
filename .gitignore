@@ -3,3 +3,11 @@ node_modules
 dist
 dist-ssr
 *.local
+
+.vscode
+.idea
+
+*.pyc
+*.sqlite3
+*migrations*
+.env/
