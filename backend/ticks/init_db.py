@@ -41,14 +41,14 @@ persons = [
 
 for ticket in tickets:
     p = post(ticket, "tickets")
-    if (p["status"]=="200"):
+    if (p["status"]==200):
         print("Ticket:", ticket["title"], "posted successfully", p["status"])
         continue
     print("Ticket:", ticket["title"], "post FAILED", p["status"])
 
 for person in persons:
     p = post(person, "persons")
-    if (p["status"]=="201"):
+    if (p["status"]==201):
         print("Person:", person["name"], "posted successfully", p["status"])
         continue
     print("Person:", person["name"], "post FAILED", p["status"])
