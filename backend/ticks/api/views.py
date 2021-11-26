@@ -1,5 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import permissions
 from rest_framework import status
 from django.http import Http404
 from . import serializers
@@ -7,17 +8,22 @@ from . import models
 
 
 class TicketList(APIView):
+    serializer_class = serializers.TicketSerializer
+
+    def get_queryset(self):
+        return models.Ticket.objects.all()  
+
     def get(self, request, format=None):
-        queryset = models.Ticket.objects.all()
+        tickets = self.get_queryset()
 
         customer = request.query_params.get('customer')
         if customer:
-            queryset = queryset.filter(customer=customer)
+            tickets = tickets.filter(customer=customer)
         assignee = request.query_params.get('assignee')
         if assignee:
-            queryset = queryset.filter(assignee=assignee)
+            tickets = tickets.filter(assignee=assignee)
 
-        serializer = serializers.TicketSerializer(queryset, many=True)
+        serializer = serializers.TicketSerializer(tickets, many=True)
         return Response(serializer.data)
 
     def post(self, request, format=None):
