@@ -8,7 +8,7 @@ class TicketSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class PersonSerializer(serializers.ModelSerializer):
+class PersonSerializer(serializers.ModelSerializer):    
     class Meta:
         model = models.Person
         fields = '__all__'
