@@ -1,7 +1,7 @@
 #!/bin/bash
 if [ ! -d ".env" ]
 then
-  source ./setup.sh
+  source setup.sh
 fi
 
 source .env/bin/activate
