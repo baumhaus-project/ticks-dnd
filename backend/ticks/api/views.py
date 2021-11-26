@@ -1,29 +1,22 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import permissions
 from rest_framework import status
 from django.http import Http404
 from . import serializers
 from . import models
 
-
 class TicketList(APIView):
-    serializer_class = serializers.TicketSerializer
-
-    def get_queryset(self):
-        return models.Ticket.objects.all()  
-
     def get(self, request, format=None):
-        tickets = self.get_queryset()
+        queryset = models.Ticket.objects.all()
 
         customer = request.query_params.get('customer')
         if customer:
-            tickets = tickets.filter(customer=customer)
+            queryset = queryset.filter(customer=customer)
         assignee = request.query_params.get('assignee')
         if assignee:
-            tickets = tickets.filter(assignee=assignee)
+            queryset = queryset.filter(assignee=assignee)
 
-        serializer = serializers.TicketSerializer(tickets, many=True)
+        serializer = serializers.TicketSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def post(self, request, format=None):
@@ -65,4 +58,11 @@ class PersonList(APIView):
         queryset = models.Person.objects.all()
         serializer = serializers.PersonSerializer(queryset, many=True)
         return Response(serializer.data)
+    
+    def post(self, request, format=None):
+        serializer = serializers.PersonSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
