@@ -28,6 +28,8 @@ def get(endpoint, params=[]):
 
 def post(e, endpoint):
     global headers_
+
+    # print(json.dumps(e))
       
     r_str = urljoin(settings.API_SERVER, endpoint)
     r = requests.post(r_str, data=json.dumps(e), headers=headers_)
