@@ -1,20 +1,20 @@
 from datetime import datetime
 from django.test import TestCase
+from rest_framework.test import APITestCase
+
 from api.models import Person, Ticket
 from api.serializers import PersonSerializer, TicketSerializer
 
 
 
-person = Person(
-    id="7b202019-e115-46a4-a561-f12eb7a5113b", 
-    name="TestUser")
 
-class PersonTests(TestCase):
-    global person
+
+class PersonTests(APITestCase):
+    person = Person(name="TestUser")
 
     def test_post_person(self):
-        serialized = PersonSerializer(person)             
-        response = self.client.post("/api/persons", serialized.data)                
+        serializer = PersonSerializer(self.person)             
+        response = self.client.post("/api/persons", serializer.data)                
         self.assertEqual(response.status_code, 201)
 
     # def test_put_person(self):
@@ -33,10 +33,11 @@ class PersonTests(TestCase):
     #     self.assertEqual(response.data["name"], "TestUser")
 
 
-class TicketTests(TestCase):
-    global person
-
+class TicketTests(APITestCase):
+    person = Person(name="TestUser")
+    
     ticket = Ticket(
+        id="46fa4703-0248-49f4-bb54-800c2900bb78",
         title="Ticket A",
         created=datetime.today(),
         assignee=person,
@@ -46,12 +47,26 @@ class TicketTests(TestCase):
         status="OPEN")
 
     def test_post_ticket(self):
-        serialized = TicketSerializer(self.ticket)
-        response = self.client.post("/api/tickets", serialized.data)                
+        serializer = TicketSerializer(self.ticket)
+
+        print(Person.objects.all())
+
+        test_data = {
+            "id":"46fa4703-0248-49f4-bb54-800c2900bb78",
+            "created":"2021-11-27T14:49:46.801282Z",
+            "title":"Ticket A",
+            "customer":"Customer A",
+            "time_spent":120,
+            "active":True,
+            "status":"OPEN",
+            #"assignee": str(self.person.id)
+            }
+
+        response = self.client.post("/api/tickets", test_data)                
         self.assertEqual(response.status_code, 201)
 
-    def test_get_ticket(self):
-        response = self.client.get("/api/tickets/" + str(self.ticket.id))                
-        self.assertEqual(response.status_code, 200)
+    # def test_get_ticket(self):               
+    #     response = self.client.get("/api/tickets/" + str(self.ticket.id))                
+    #     self.assertEqual(response.status_code, 200)
 
 # Create your tests here.

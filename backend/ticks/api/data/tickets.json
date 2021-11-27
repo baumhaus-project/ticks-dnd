@@ -1,0 +1,44 @@
+[
+    {
+        "model": "api.Ticket",
+        "pk": "5d69b330-ac08-47e6-9fd6-dc8d293a8499",
+        "fields": {
+            "id": "5d69b330-ac08-47e6-9fd6-dc8d293a8499",
+            "created":"2021-11-27T14:49:46.801282Z",
+            "title":"Ticket A",
+            "customer":"Customer A",
+            "assignee": "d685d5ea-a076-4642-9a66-4178176bd0fd",
+            "time_spent": 120,
+            "active": true,
+            "status":"OPEN"
+        }
+    },
+    {
+        "model": "api.Ticket",
+        "pk": "d5c26e02-68a5-44aa-83a3-147909d3db73",
+        "fields": {
+            "id":"d5c26e02-68a5-44aa-83a3-147909d3db73",
+            "created":"2021-11-27T14:49:46.801282Z",
+            "title":"Ticket B",
+            "customer":"Customer B",
+            "assignee": "d685d5ea-a076-4642-9a66-4178176bd0fd",
+            "time_spent": 180,
+            "active": true,
+            "status":"OPEN"
+        }
+    },
+    {
+        "model": "api.Ticket",
+        "pk": "cba1beae-dc13-4ebf-8dac-2490e8cfc3f3",
+        "fields": {
+            "id":"cba1beae-dc13-4ebf-8dac-2490e8cfc3f3",
+            "created":"2021-11-27T14:49:46.801282Z",
+            "title":"Ticket C",
+            "customer":"Customer A",
+            "assignee": "38fbb97a-cc16-45a0-a822-8ad189e3e2c2",
+            "time_spent": 60,
+            "active": false,
+            "status":"OPEN"
+        }
+    }
+    ]
