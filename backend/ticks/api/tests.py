@@ -6,67 +6,60 @@ from api.models import Person, Ticket
 from api.serializers import PersonSerializer, TicketSerializer
 
 
-
-
-
 class PersonTests(APITestCase):
-    person = Person(name="TestUser")
+    fixtures=["persons"]
 
-    def test_post_person(self):
-        serializer = PersonSerializer(self.person)             
-        response = self.client.post("/api/persons", serializer.data)                
-        self.assertEqual(response.status_code, 201)
-
-    # def test_put_person(self):
-    #     response = self.client.put("/api/persons", {"name": "FakeUser"})
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertEqual(response.data["name"], "FakeUser")
-
-    # def test_delete_person(self):
-    #     serialized = PersonSerializer(self.person)             
-    #     response = self.client.delete("/api/persons", serialized.data)                
-    #     self.assertEqual(response.status_code, 201)
-
-    # def test_get_person(self):
-    #     response = self.client.get("/api/persons" str(self.person.id))
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertEqual(response.data["name"], "TestUser")
+    def test_get_all_persons(self):
+        response = self.client.get("/api/persons")
+        self.assertEqual(response.status_code, 200)        
+        self.assertEqual(len(response.json()), 2)        
+      
+    def test_get_person(self):
+        response = self.client.get("/api/persons/d685d5ea-a076-4642-9a66-4178176bd0fd")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["name"], "Steffen")
 
 
 class TicketTests(APITestCase):
-    person = Person(name="TestUser")
+    fixtures = ["tickets", "persons"]
     
-    ticket = Ticket(
-        id="46fa4703-0248-49f4-bb54-800c2900bb78",
-        title="Ticket A",
-        created=datetime.today(),
-        assignee=person,
-        customer="Customer A", 
-        time_spent=120, 
-        active=True, 
-        status="OPEN")
+    def test_get_all_tickets(self):
+        response = self.client.get("/api/tickets")
+        self.assertEqual(response.status_code, 200)        
+        self.assertEqual(len(response.json()), 3)        
+      
+    def test_get_ticket(self):
+        response = self.client.get("/api/tickets/5d69b330-ac08-47e6-9fd6-dc8d293a8499")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["time_spent"], 120)
+
+    def test_put_ticket(self):
+        changes = {
+            "id": "5d69b330-ac08-47e6-9fd6-dc8d293a8499",
+            "created":"2021-11-27T14:49:46.801282Z",
+            "title":"TestTitle",
+            "customer":"Customer A",
+            "assignee": "d685d5ea-a076-4642-9a66-4178176bd0fd",
+            "time_spent": 120,
+            "active": True,
+            "status":"ASSIGNED"
+        }
+        response = self.client.put("/api/tickets/5d69b330-ac08-47e6-9fd6-dc8d293a8499", changes)                  
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["time_spent"], 120)
+        self.assertEqual(response.json()["title"], "TestTitle")
+        self.assertEqual(response.json()["status"], "ASSIGNED")
 
     def test_post_ticket(self):
-        serializer = TicketSerializer(self.ticket)
+        ticket = Ticket(
+            title="NewTicket",
+            created=datetime.today(),
+            assignee=Person.objects.first(),
+            customer="Customer A", 
+            time_spent=0, 
+            active=True, 
+            status="ASSIGNED")
 
-        print(Person.objects.all())
-
-        test_data = {
-            "id":"46fa4703-0248-49f4-bb54-800c2900bb78",
-            "created":"2021-11-27T14:49:46.801282Z",
-            "title":"Ticket A",
-            "customer":"Customer A",
-            "time_spent":120,
-            "active":True,
-            "status":"OPEN",
-            #"assignee": str(self.person.id)
-            }
-
-        response = self.client.post("/api/tickets", test_data)                
+        serializer = TicketSerializer(ticket)
+        response = self.client.post("/api/tickets", serializer.data)                
         self.assertEqual(response.status_code, 201)
-
-    # def test_get_ticket(self):               
-    #     response = self.client.get("/api/tickets/" + str(self.ticket.id))                
-    #     self.assertEqual(response.status_code, 200)
-
-# Create your tests here.
