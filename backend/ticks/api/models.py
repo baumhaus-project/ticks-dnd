@@ -20,11 +20,11 @@ class Ticket(models.Model):
     active = models.BooleanField(default=False)
 
     STATUS = (
-        ('OPEN', 'Offen'),
-        ('ASSIGNED', 'Zugewiesen'),
-        ('PROCESSING', 'In Bearbeitung'),
+        ("OPEN", "Offen"),
+        ("ASSIGNED", "Zugewiesen"),
+        ("PROCESSING", "In Bearbeitung"),
     )
-    status = models.CharField(max_length=20, choices=STATUS, default='OPEN')
+    status = models.CharField(max_length=20, choices=STATUS, default="OPEN")
 
     def __str__(self):
         return self.title

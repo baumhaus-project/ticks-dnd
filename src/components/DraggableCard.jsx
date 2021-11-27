@@ -32,6 +32,7 @@ export default function DraggableCard({ item, listId, index }) {
           >
             x
           </button>
+          <Draggable />
         </li>
       )}
     </Draggable>
