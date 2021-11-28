@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
+import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Draggable } from 'react-beautiful-dnd';
 import { useStoreActions } from 'easy-peasy';
+import CardMenu from './CardMenu';
 
 function CardHeader({ open, ticketId }) {
   const { deleteTicket } = useStoreActions((actions) => actions);
@@ -31,8 +32,6 @@ CardHeader.propTypes = {
 };
 
 export default function DraggableCard({ item, index }) {
-  const [openHeader, setOpenHeader] = useState(false);
-
   return (
     <Draggable key={item.id} draggableId={item.id} index={index}>
       {(provided) => (
@@ -41,18 +40,11 @@ export default function DraggableCard({ item, index }) {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          <CardHeader open={openHeader} ticketId={item.id} />
           <div className="card">
             <h3>Titel: {item.title}</h3>
             <h4>Customer: {item.customer}</h4>
             <p>Assignees: {item.assignee}</p>
-            <button
-              className="btn-small card-header-btn"
-              type="button"
-              onClick={() => setOpenHeader((prev) => !prev)}
-            >
-              {' '}
-            </button>
+            <CardMenu />
           </div>
         </li>
       )}
