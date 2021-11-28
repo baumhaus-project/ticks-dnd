@@ -24,6 +24,7 @@ export default function DroppableList({ id, title, cards }) {
                 saveTicket({
                   ticket: {
                     title: 'NewTicket',
+                    description: '',
                     customer: 'Customer A',
                     assignee: '38fbb97a-cc16-45a0-a822-8ad189e3e2c2',
                     time_spent: 0,
@@ -33,7 +34,7 @@ export default function DroppableList({ id, title, cards }) {
                 })
               }
             >
-              Add
+              +
             </button>
           </div>
           <ul
@@ -59,6 +60,7 @@ DroppableList.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
       customer: PropTypes.string.isRequired,
       time_spent: PropTypes.number.isRequired,
       active: PropTypes.bool.isRequired,

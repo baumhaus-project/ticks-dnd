@@ -10,7 +10,8 @@
             "assignee": "d685d5ea-a076-4642-9a66-4178176bd0fd",
             "time_spent": 120,
             "active": true,
-            "status":"OPEN"
+            "status":"OPEN",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
         }
     },
     {
@@ -24,7 +25,8 @@
             "assignee": "d685d5ea-a076-4642-9a66-4178176bd0fd",
             "time_spent": 180,
             "active": true,
-            "status":"OPEN"
+            "status":"OPEN",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
         }
     },
     {
@@ -38,7 +40,8 @@
             "assignee": "38fbb97a-cc16-45a0-a822-8ad189e3e2c2",
             "time_spent": 60,
             "active": false,
-            "status":"OPEN"
+            "status":"OPEN",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
         }
     },
     {
@@ -52,7 +55,8 @@
             "assignee": "d685d5ea-a076-4642-9a66-4178176bd0fd",
             "time_spent": 360,
             "active": true,
-            "status":"PROCESSING"
+            "status":"PROCESSING",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
         }
     },
     {
@@ -66,7 +70,8 @@
             "assignee": "38fbb97a-cc16-45a0-a822-8ad189e3e2c2",
             "time_spent": 60,
             "active": false,
-            "status":"PROCESSING"
+            "status":"PROCESSING",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
         }
     },
     {
@@ -80,7 +85,8 @@
             "assignee": "38fbb97a-cc16-45a0-a822-8ad189e3e2c2",
             "time_spent": 60,
             "active": false,
-            "status":"DONE"
+            "status":"DONE",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
         }
     }
 ]
