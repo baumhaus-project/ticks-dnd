@@ -9,6 +9,11 @@
     "plugin:import/recommended"
   ],
 
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+
   "rules": {
     "react/no-danger": "off",
     "react/react-in-jsx-scope": "off",

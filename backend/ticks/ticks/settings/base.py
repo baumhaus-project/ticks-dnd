@@ -29,6 +29,7 @@ API_SERVER = ""
 
 ALLOWED_HOSTS = []
 
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',

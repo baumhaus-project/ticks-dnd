@@ -1,16 +1,19 @@
 /* eslint-disable no-param-reassign */
-import { action } from 'easy-peasy';
-import * as initData from './data.json';
+import { action, thunk } from 'easy-peasy';
+// import { post, put, remove } from './requests';
 
 const model = {
-  data: initData.default,
+  data: [],
 
-  updateData: action((state, payload) => {
+  setData: action((state, payload) => {
     state.data = payload;
   }),
 
-  //   TODO: addColumn: action((state, payload) => {}),
-  //   TODO: deleteColumn: action((state, payload) => {}),
+  loadData: thunk((actions) => {
+    return fetch(`${import.meta.env.VITE_API_URL}/api/tickets`)
+      .then((res) => res.json())
+      .then((res) => actions.setData(res));
+  }),
 
   addCard: action((state, payload) => {
     const { listId, card } = payload;
