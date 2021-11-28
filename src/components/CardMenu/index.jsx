@@ -4,7 +4,7 @@ import { PropTypes, shape } from 'prop-types';
 import { useStoreActions } from 'easy-peasy';
 import './style.css';
 
-export default function CardMenu({ item }) {
+export default function CardMenu({ item, setReadonly }) {
   const [open, setOpen] = useState(false);
   const { deleteTicket } = useStoreActions((actions) => actions);
 
@@ -21,7 +21,9 @@ export default function CardMenu({ item }) {
         <div />
       </div>
       <div className={`dropdown-content${open ? ' visible' : ''}`}>
-        <button type="button">Edit</button>
+        <button type="button" onClick={() => setReadonly((prev) => !prev)}>
+          Edit
+        </button>
         <button type="button" onClick={() => deleteTicket(item.id)}>
           Delete
         </button>
@@ -35,4 +37,5 @@ CardMenu.propTypes = {
   item: shape({
     id: PropTypes.string.isRequired,
   }).isRequired,
+  setReadonly: PropTypes.func.isRequired,
 };

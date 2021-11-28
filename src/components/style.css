@@ -58,9 +58,17 @@ li {
   margin-bottom: 0.5em;
 }
 
-.card > input:focus {
+.card > .editable {
+  background-color: white;
+}
+
+.card > .editable:focus {
   outline: none !important;
-  color: white;
+  color: var(--color-palette-red);
+}
+
+.card > .readonly:focus {
+  outline: none !important;
 }
 
 .add-btn {
