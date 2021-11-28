@@ -8,11 +8,11 @@ import { Droppable } from 'react-beautiful-dnd';
 import DraggableCard from './DraggableCard';
 import './style.css';
 
-export default function DroppableList(key, { title, cards }) {
+export default function DroppableList({ id, title, cards }) {
   const { addCard } = useStoreActions((actions) => actions);
 
   return (
-    <Droppable droppableId={key}>
+    <Droppable droppableId={id}>
       {(provided) => (
         <div className="column">
           <div className="column-header">
@@ -22,7 +22,7 @@ export default function DroppableList(key, { title, cards }) {
               type="button"
               onClick={() =>
                 addCard({
-                  listId: key,
+                  listId: id,
                   card: {
                     id: uuidv4(),
                     title: '',
@@ -44,7 +44,7 @@ export default function DroppableList(key, { title, cards }) {
             {cards.map((item, index) => (
               <DraggableCard
                 item={item}
-                listId={key}
+                listId={id}
                 index={index}
                 key={uuidv4()}
               />
@@ -58,14 +58,17 @@ export default function DroppableList(key, { title, cards }) {
 }
 
 DroppableList.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   cards: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       customer: PropTypes.string.isRequired,
-      assignees: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
+      time_spent: PropTypes.number.isRequired,
+      active: PropTypes.bool.isRequired,
+      status: PropTypes.string.isRequired,
+      assignee: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
 };

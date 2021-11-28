@@ -18,7 +18,7 @@ export default function DraggableCard({ item, listId, index }) {
           <div className="card">
             <h3>Titel: {item.title}</h3>
             <h4>Customer: {item.customer}</h4>
-            <p>Assignees: {item.assignees}</p>
+            <p>Assignees: {item.assignee}</p>
           </div>
           <button
             className="delete-btn"
@@ -43,8 +43,10 @@ DraggableCard.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     customer: PropTypes.string.isRequired,
-    assignees: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    time_spent: PropTypes.number.isRequired,
+    active: PropTypes.bool.isRequired,
+    status: PropTypes.string.isRequired,
+    assignee: PropTypes.string.isRequired,
   }).isRequired,
   listId: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
