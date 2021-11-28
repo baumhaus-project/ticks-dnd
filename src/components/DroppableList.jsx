@@ -8,21 +8,21 @@ import { Droppable } from 'react-beautiful-dnd';
 import DraggableCard from './DraggableCard';
 import './style.css';
 
-export default function DroppableList({ column }) {
+export default function DroppableList(key, { title, cards }) {
   const { addCard } = useStoreActions((actions) => actions);
 
   return (
-    <Droppable droppableId={column.id}>
+    <Droppable droppableId={key}>
       {(provided) => (
         <div className="column">
           <div className="column-header">
-            <h2 className="column-title">{column.title}</h2>
+            <h2 className="column-title">{title}</h2>
             <button
               className="add-btn"
               type="button"
               onClick={() =>
                 addCard({
-                  listId: column.id,
+                  listId: key,
                   card: {
                     id: uuidv4(),
                     title: '',
@@ -41,10 +41,10 @@ export default function DroppableList({ column }) {
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
-            {column.cards.map((item, index) => (
+            {cards.map((item, index) => (
               <DraggableCard
                 item={item}
-                listId={column.id}
+                listId={key}
                 index={index}
                 key={uuidv4()}
               />
@@ -58,17 +58,14 @@ export default function DroppableList({ column }) {
 }
 
 DroppableList.propTypes = {
-  column: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    cards: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        customer: PropTypes.string.isRequired,
-        assignees: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-      }).isRequired,
-    ).isRequired,
-  }).isRequired,
+  title: PropTypes.string.isRequired,
+  cards: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      customer: PropTypes.string.isRequired,
+      assignees: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
 };

@@ -21,8 +21,8 @@ class Ticket(models.Model):
 
     STATUS = (
         ("OPEN", "Offen"),
-        ("ASSIGNED", "Zugewiesen"),
         ("PROCESSING", "In Bearbeitung"),
+        ("DONE", "Abgeschlossen"),
     )
     status = models.CharField(max_length=20, choices=STATUS, default="OPEN")
 

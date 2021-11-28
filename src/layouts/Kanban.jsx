@@ -8,7 +8,7 @@ import './style.css';
 
 export default function Kanban() {
   const { data } = useStoreState((state) => state);
-  const { updateData } = useStoreActions((actions) => actions);
+  const { setData } = useStoreActions((actions) => actions);
 
   const handleOnDragEnd = (result) => {
     const { source, destination } = result;
@@ -28,7 +28,7 @@ export default function Kanban() {
       items.splice(destination.index, 0, reorderedItem);
 
       // update state
-      updateData([
+      setData([
         ...data.slice(0, index),
         { ...data[index], cards: items },
         ...data.slice(index + 1),
@@ -51,7 +51,7 @@ export default function Kanban() {
       // update state
       const firstIndex = index > srcIndex ? srcIndex : index;
       const secondIndex = index > srcIndex ? index : srcIndex;
-      updateData([
+      setData([
         ...data.slice(0, firstIndex),
         { ...data[firstIndex], cards: index > srcIndex ? srcItems : items },
         ...data.slice(firstIndex + 1, secondIndex),
@@ -64,9 +64,11 @@ export default function Kanban() {
   return (
     <div className="Kanban">
       <DragDropContext onDragEnd={handleOnDragEnd}>
-        {data.map((col) => (
-          <DroppableList key={uuidv4()} column={col} />
-        ))}
+        <DroppableList
+          key={uuidv4()}
+          title="Offen"
+          cards={data.filter((x) => x.status === 'OFFEN')}
+        />
       </DragDropContext>
     </div>
   );
