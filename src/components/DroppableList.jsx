@@ -9,7 +9,7 @@ import DraggableCard from './DraggableCard';
 import './style.css';
 
 export default function DroppableList({ id, title, cards }) {
-  const { addCard } = useStoreActions((actions) => actions);
+  const { saveTicket } = useStoreActions((actions) => actions);
 
   return (
     <Droppable droppableId={id}>
@@ -21,14 +21,14 @@ export default function DroppableList({ id, title, cards }) {
               className="add-btn"
               type="button"
               onClick={() =>
-                addCard({
-                  listId: id,
-                  card: {
-                    id: uuidv4(),
-                    title: '',
-                    customer: '',
-                    assignees: '',
-                    description: '',
+                saveTicket({
+                  ticket: {
+                    title: 'NewTicket',
+                    customer: 'Customer A',
+                    assignee: '38fbb97a-cc16-45a0-a822-8ad189e3e2c2',
+                    time_spent: 0,
+                    active: true,
+                    status: 'OPEN',
                   },
                 })
               }
@@ -42,12 +42,7 @@ export default function DroppableList({ id, title, cards }) {
             {...provided.droppableProps}
           >
             {cards.map((item, index) => (
-              <DraggableCard
-                item={item}
-                listId={id}
-                index={index}
-                key={uuidv4()}
-              />
+              <DraggableCard item={item} index={index} key={uuidv4()} />
             ))}
             {provided.placeholder}
           </ul>

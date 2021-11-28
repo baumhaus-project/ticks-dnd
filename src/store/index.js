@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
-import { action, thunk } from 'easy-peasy';
-// import { post, put, remove } from './requests';
+import { action, thunk, thunkOn } from 'easy-peasy';
+import { post, remove } from './requests';
 
 const model = {
   tickets: [],
@@ -17,20 +16,31 @@ const model = {
       .then((res) => actions.setTickets(res));
   }),
 
-  addCard: action((state, payload) => {
-    // const { listId, card } = payload;
-    // state.data.find((x) => x.id === listId).cards.push(card);
+  saveTicket: thunk(async (actions, payload) => {
+    const { ticket } = payload;
+    return post({
+      url: `${import.meta.env.VITE_API_URL}/api/tickets`,
+      payload: ticket,
+    });
   }),
-  deleteCard: action((state, payload) => {
-    // const { listId, cardId } = payload;
-    // const { cards } = state.data.find((x) => x.id === listId);
-    // const index = cards.findIndex((x) => x.id === cardId);
-    // if (index !== -1) {
-    //   cards.splice(index, 1);
-    // } else {
-    //   throw new Error('Card index search failed !');
-    // }
+  deleteTicket: thunk(async (actions, payload) => {
+    const { ticketId } = payload;
+    return remove({
+      url: `${import.meta.env.VITE_API_URL}/api/tickets/${ticketId}`,
+    });
   }),
+
+  onRequest: thunkOn(
+    (actions) => [actions.saveTicket, actions.deleteTicket],
+    async (actions, target) => {
+      if (target.result.ok) {
+        actions.loadTickets();
+        // TODO: Snackbar SUCCESS
+      } else {
+        // TODO: Snackbar FAILURE
+      }
+    },
+  ),
 };
 
 export default model;

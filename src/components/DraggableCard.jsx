@@ -4,8 +4,8 @@ import { useStoreActions } from 'easy-peasy';
 import { PropTypes } from 'prop-types';
 import { Draggable } from 'react-beautiful-dnd';
 
-export default function DraggableCard({ item, listId, index }) {
-  const { deleteCard } = useStoreActions((actions) => actions);
+export default function DraggableCard({ item, index }) {
+  const { deleteTicket } = useStoreActions((actions) => actions);
 
   return (
     <Draggable key={item.id} draggableId={item.id} index={index}>
@@ -24,9 +24,8 @@ export default function DraggableCard({ item, listId, index }) {
             className="delete-btn"
             type="button"
             onClick={() =>
-              deleteCard({
-                listId,
-                cardId: item.id,
+              deleteTicket({
+                ticketId: item.id,
               })
             }
           >
@@ -48,6 +47,5 @@ DraggableCard.propTypes = {
     status: PropTypes.string.isRequired,
     assignee: PropTypes.string.isRequired,
   }).isRequired,
-  listId: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
 };
