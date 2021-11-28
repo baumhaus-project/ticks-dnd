@@ -1,35 +1,10 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Draggable } from 'react-beautiful-dnd';
-import { useStoreActions } from 'easy-peasy';
+
 import CardMenu from './CardMenu';
-
-function CardHeader({ open, ticketId }) {
-  const { deleteTicket } = useStoreActions((actions) => actions);
-
-  return (
-    <div className={`card-header ${open ? 'card-header-open' : ''}`}>
-      <div className="btn-container">
-        <button
-          className="btn-small delete-btn"
-          type="button"
-          onClick={() => deleteTicket({ ticketId })}
-        >
-          delete
-        </button>
-        <button className="btn-small edit-btn" type="button">
-          edit
-        </button>
-      </div>
-    </div>
-  );
-}
-
-CardHeader.propTypes = {
-  open: PropTypes.bool.isRequired,
-  ticketId: PropTypes.string.isRequired,
-};
 
 export default function DraggableCard({ item, index }) {
   return (
@@ -40,12 +15,15 @@ export default function DraggableCard({ item, index }) {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          <div className="card">
-            <h3>Titel: {item.title}</h3>
-            <h4>Customer: {item.customer}</h4>
-            <p>Assignees: {item.assignee}</p>
+          <form className="card">
+            <label htmlFor="title">Title</label>
+            <input type="text" id="title" name="title" value={item.title} />
+            <label htmlFor="title">Customer</label>
+            <input type="text" id="title" name="title" value={item.customer} />
+            <label htmlFor="title">Assignee</label>
+            <input type="text" id="title" name="title" value={item.assignee} />
             <CardMenu item={item} />
-          </div>
+          </form>
         </li>
       )}
     </Draggable>
