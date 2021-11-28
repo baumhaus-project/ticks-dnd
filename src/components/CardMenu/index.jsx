@@ -1,9 +1,12 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
+import { PropTypes, shape } from 'prop-types';
+import { useStoreActions } from 'easy-peasy';
 import './style.css';
 
-export default function CardMenu() {
+export default function CardMenu({ item }) {
   const [open, setOpen] = useState(false);
+  const { deleteTicket } = useStoreActions((actions) => actions);
 
   return (
     <div className="card-menu-container">
@@ -19,9 +22,17 @@ export default function CardMenu() {
       </div>
       <div className={`dropdown-content${open ? ' visible' : ''}`}>
         <button type="button">Edit</button>
-        <button type="button">Delete</button>
+        <button type="button" onClick={() => deleteTicket(item.id)}>
+          Delete
+        </button>
         <button type="button">Archive</button>
       </div>
     </div>
   );
 }
+
+CardMenu.propTypes = {
+  item: shape({
+    id: PropTypes.string.isRequired,
+  }).isRequired,
+};

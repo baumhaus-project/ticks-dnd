@@ -24,9 +24,8 @@ const model = {
     });
   }),
   deleteTicket: thunk(async (actions, payload) => {
-    const { ticketId } = payload;
     return remove({
-      url: `${import.meta.env.VITE_API_URL}/api/tickets/${ticketId}`,
+      url: `${import.meta.env.VITE_API_URL}/api/tickets/${payload}`,
     });
   }),
 

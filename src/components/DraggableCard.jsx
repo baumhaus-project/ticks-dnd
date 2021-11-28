@@ -44,7 +44,7 @@ export default function DraggableCard({ item, index }) {
             <h3>Titel: {item.title}</h3>
             <h4>Customer: {item.customer}</h4>
             <p>Assignees: {item.assignee}</p>
-            <CardMenu />
+            <CardMenu item={item} />
           </div>
         </li>
       )}
