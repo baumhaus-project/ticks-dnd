@@ -14,6 +14,7 @@ class Ticket(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=200)
+    description = models.CharField(max_length=500, blank=True)
     customer = models.CharField(max_length=100)
     assignee = models.ForeignKey(Person, null=True, on_delete=models.SET_NULL)
     time_spent = models.IntegerField(default=0)
@@ -21,8 +22,8 @@ class Ticket(models.Model):
 
     STATUS = (
         ("OPEN", "Offen"),
-        ("ASSIGNED", "Zugewiesen"),
         ("PROCESSING", "In Bearbeitung"),
+        ("DONE", "Abgeschlossen"),
     )
     status = models.CharField(max_length=20, choices=STATUS, default="OPEN")
 

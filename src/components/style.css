@@ -30,32 +30,76 @@ li {
 }
 
 .card {
+  z-index: 1;
   background-color: var(--color-palette-red);
   box-shadow: 0.25em 0.25em var(--color-palette-blue);
   margin: 1em;
   padding: 1em;
+  padding-top: 3em;
   max-width: 16em;
   border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.card > label {
+  padding-left: 0.15em;
+  margin-bottom: 0.15em;
+}
+
+.card > input,
+textarea,
+select {
+  color: var(--color-palette-blue);
+  background-color: var(--color-palette-rosa);
+  height: 1.5em;
+  border: none;
+  border-radius: 0.5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.card > div > textarea {
+  resize: vertical;
+  overflow: auto;
+  display: flex;
+  flex-grow: 1;
+  height: 9em;
+}
+
+.card .visible {
+  visibility: visible;
+}
+.card .hidden {
+  visibility: hidden;
+}
+
+.card .editable {
+  background-color: white;
+}
+
+.card .editable:focus {
+  outline: none !important;
+  color: var(--color-palette-red);
+}
+
+.card .readonly:focus {
+  outline: none !important;
 }
 
 .add-btn {
-  background-color: var(--color-palette-blue);
-  color: var(--color-palette-mocha);
-  border-color: var(--color-palette-brown);
-  border-radius: 1em;
-  border-width: 0.25em;
-  padding: 0.25em 1em;
-  cursor: pointer;
-}
-
-.delete-btn {
   background-color: var(--color-palette-mocha);
   color: var(--color-palette-blue);
-  border-color: var(--color-palette-brown);
-  border-radius: 1em;
-  border-width: 0.25em;
+  border: none;
+  border-radius: 50%;
   cursor: pointer;
-  position: absolute;
-  right: 2em;
-  top: 2em;
+  font-size: 1.5em;
+  width: 1em;
+  height: 1em;
+}
+
+.add-btn:hover {
+  transform: scale(1.5);
 }

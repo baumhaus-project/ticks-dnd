@@ -1,14 +1,23 @@
-import React from 'react';
-import { useStoreState, useStoreActions } from 'easy-peasy';
+import React, { useState, useEffect } from 'react';
+import { useStoreActions, useStoreState } from 'easy-peasy';
 import { v4 as uuidv4 } from 'uuid';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import DroppableList from '../components/DroppableList';
 import './style.css';
+import Spinner from '../components/Spinner';
 
 export default function Kanban() {
-  const { data } = useStoreState((state) => state);
-  const { updateData } = useStoreActions((actions) => actions);
+  const [loading, setLoading] = useState(true);
+  const { tickets } = useStoreState((state) => state);
+  const { loadTickets, loadPersons, setTickets } = useStoreActions(
+    (actions) => actions,
+  );
+
+  useEffect(() => {
+    Promise.allSettled([loadTickets(), loadPersons()]).then(setLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleOnDragEnd = (result) => {
     const { source, destination } = result;
@@ -17,9 +26,9 @@ export default function Kanban() {
     if (!result.destination) return;
 
     // index of destination object within array
-    const index = data.findIndex((x) => x.id === destination.droppableId);
+    const index = tickets.findIndex((x) => x.id === destination.droppableId);
     // duplicate array
-    const items = Array.from(data[index].cards);
+    const items = Array.from(tickets[index].cards);
 
     // Sorting when the destination is the same arrays
     if (source.droppableId === destination.droppableId) {
@@ -28,19 +37,19 @@ export default function Kanban() {
       items.splice(destination.index, 0, reorderedItem);
 
       // update state
-      updateData([
-        ...data.slice(0, index),
-        { ...data[index], cards: items },
-        ...data.slice(index + 1),
+      setTickets([
+        ...tickets.slice(0, index),
+        { ...tickets[index], cards: items },
+        ...tickets.slice(index + 1),
       ]);
     }
 
     // Move from one array to another
     else {
       // index of source object within array
-      const srcIndex = data.findIndex((x) => x.id === source.droppableId);
+      const srcIndex = tickets.findIndex((x) => x.id === source.droppableId);
       // duplicate array
-      const srcItems = Array.from(data[srcIndex].cards);
+      const srcItems = Array.from(tickets[srcIndex].cards);
       const card = srcItems.find((x) => x.id === result.draggableId);
 
       // insert new card with destination index
@@ -51,22 +60,45 @@ export default function Kanban() {
       // update state
       const firstIndex = index > srcIndex ? srcIndex : index;
       const secondIndex = index > srcIndex ? index : srcIndex;
-      updateData([
-        ...data.slice(0, firstIndex),
-        { ...data[firstIndex], cards: index > srcIndex ? srcItems : items },
-        ...data.slice(firstIndex + 1, secondIndex),
-        { ...data[secondIndex], cards: index > srcIndex ? items : srcItems },
-        ...data.slice(secondIndex + 1),
+      setTickets([
+        ...tickets.slice(0, firstIndex),
+        { ...tickets[firstIndex], cards: index > srcIndex ? srcItems : items },
+        ...tickets.slice(firstIndex + 1, secondIndex),
+        { ...tickets[secondIndex], cards: index > srcIndex ? items : srcItems },
+        ...tickets.slice(secondIndex + 1),
       ]);
     }
   };
 
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     <div className="Kanban">
       <DragDropContext onDragEnd={handleOnDragEnd}>
-        {data.map((col) => (
-          <DroppableList key={uuidv4()} column={col} />
-        ))}
+        <DroppableList
+          key={uuidv4()}
+          id={uuidv4()}
+          title="Offen"
+          cards={tickets.filter((x) => {
+            return x.status === 'OPEN';
+          })}
+        />
+        <DroppableList
+          key={uuidv4()}
+          id={uuidv4()}
+          title="In Bearbeitung"
+          cards={tickets.filter((x) => {
+            return x.status === 'PROCESSING';
+          })}
+        />
+        <DroppableList
+          key={uuidv4()}
+          id={uuidv4()}
+          title="Erledigt"
+          cards={tickets.filter((x) => {
+            return x.status === 'DONE';
+          })}
+        />
       </DragDropContext>
     </div>
   );

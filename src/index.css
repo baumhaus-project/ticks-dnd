@@ -1,7 +1,22 @@
+html {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 body {
   background-color: var(--color-palette-blue);
   font-family: 'Bubbler One', sans-serif;
   font-family: 'Ubuntu Mono', monospace;
+  flex-direction: column;
+  display: flex;
+  flex-grow: 1;
+}
+
+#root {
+  flex-direction: column;
+  display: flex;
+  flex-grow: 1;
 }
 
 :root {

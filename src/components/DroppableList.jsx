@@ -8,32 +8,33 @@ import { Droppable } from 'react-beautiful-dnd';
 import DraggableCard from './DraggableCard';
 import './style.css';
 
-export default function DroppableList({ column }) {
-  const { addCard } = useStoreActions((actions) => actions);
+export default function DroppableList({ id, title, cards }) {
+  const { saveTicket } = useStoreActions((actions) => actions);
 
   return (
-    <Droppable droppableId={column.id}>
+    <Droppable droppableId={id}>
       {(provided) => (
         <div className="column">
           <div className="column-header">
-            <h2 className="column-title">{column.title}</h2>
+            <h2 className="column-title">{title}</h2>
             <button
               className="add-btn"
               type="button"
               onClick={() =>
-                addCard({
-                  listId: column.id,
-                  card: {
-                    id: uuidv4(),
-                    title: '',
-                    customer: '',
-                    assignees: '',
+                saveTicket({
+                  ticket: {
+                    title: 'NewTicket',
                     description: '',
+                    customer: 'Customer A',
+                    assignee: '38fbb97a-cc16-45a0-a822-8ad189e3e2c2',
+                    time_spent: 0,
+                    active: true,
+                    status: 'OPEN',
                   },
                 })
               }
             >
-              Add
+              +
             </button>
           </div>
           <ul
@@ -41,13 +42,8 @@ export default function DroppableList({ column }) {
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
-            {column.cards.map((item, index) => (
-              <DraggableCard
-                item={item}
-                listId={column.id}
-                index={index}
-                key={uuidv4()}
-              />
+            {cards.map((item, index) => (
+              <DraggableCard item={item} index={index} key={uuidv4()} />
             ))}
             {provided.placeholder}
           </ul>
@@ -58,17 +54,18 @@ export default function DroppableList({ column }) {
 }
 
 DroppableList.propTypes = {
-  column: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    cards: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        customer: PropTypes.string.isRequired,
-        assignees: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-      }).isRequired,
-    ).isRequired,
-  }).isRequired,
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  cards: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      customer: PropTypes.string.isRequired,
+      time_spent: PropTypes.number.isRequired,
+      active: PropTypes.bool.isRequired,
+      status: PropTypes.string.isRequired,
+      assignee: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
 };

@@ -2,17 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { StoreProvider, createStore } from 'easy-peasy';
 
-import App from './App';
-import './index.css';
-
 import model from './store';
+import Kanban from './layouts/Kanban';
+import './index.css';
 
 const store = createStore(model);
 
 ReactDOM.render(
   <React.StrictMode>
     <StoreProvider store={store}>
-      <App />
+      <Kanban />
     </StoreProvider>
   </React.StrictMode>,
   document.getElementById('root'),

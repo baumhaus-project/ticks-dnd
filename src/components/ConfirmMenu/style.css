@@ -1,0 +1,14 @@
+.confirm-menu > button {
+  background-color: var(--color-palette-rosa);
+  color: var(--color-palette-blue);
+  cursor: pointer;
+  margin-top: 1em;
+  margin-right: 0.5em;
+  border-radius: 0.5em;
+  border: none;
+}
+
+.confirm-menu > button:hover {
+  background-color: var(--color-palette-blue);
+  color: var(--color-palette-rosa);
+}

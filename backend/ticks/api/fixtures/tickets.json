@@ -10,7 +10,8 @@
             "assignee": "d685d5ea-a076-4642-9a66-4178176bd0fd",
             "time_spent": 120,
             "active": true,
-            "status":"OPEN"
+            "status":"OPEN",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
         }
     },
     {
@@ -24,7 +25,8 @@
             "assignee": "d685d5ea-a076-4642-9a66-4178176bd0fd",
             "time_spent": 180,
             "active": true,
-            "status":"OPEN"
+            "status":"OPEN",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
         }
     },
     {
@@ -38,7 +40,53 @@
             "assignee": "38fbb97a-cc16-45a0-a822-8ad189e3e2c2",
             "time_spent": 60,
             "active": false,
-            "status":"OPEN"
+            "status":"OPEN",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+        }
+    },
+    {
+        "model": "api.Ticket",
+        "pk": "b45ce898-0d23-4151-8336-65903893dd3c",
+        "fields": {
+            "id":"b45ce898-0d23-4151-8336-65903893dd3c",
+            "created":"2021-11-27T14:49:46.801282Z",
+            "title":"Ticket D",
+            "customer":"Customer E",
+            "assignee": "d685d5ea-a076-4642-9a66-4178176bd0fd",
+            "time_spent": 360,
+            "active": true,
+            "status":"PROCESSING",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+        }
+    },
+    {
+        "model": "api.Ticket",
+        "pk": "e22b3c90-d615-4f21-b8a6-dd02e824452c",
+        "fields": {
+            "id":"e22b3c90-d615-4f21-b8a6-dd02e824452c",
+            "created":"2021-11-27T14:49:46.801282Z",
+            "title":"Ticket E",
+            "customer":"Customer A",
+            "assignee": "38fbb97a-cc16-45a0-a822-8ad189e3e2c2",
+            "time_spent": 60,
+            "active": false,
+            "status":"PROCESSING",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+        }
+    },
+    {
+        "model": "api.Ticket",
+        "pk": "b9596859-a856-4e9f-8a0f-64525ffe29f9",
+        "fields": {
+            "id":"b9596859-a856-4e9f-8a0f-64525ffe29f9",
+            "created":"2021-11-27T14:49:46.801282Z",
+            "title":"Ticket F",
+            "customer":"Customer A",
+            "assignee": "38fbb97a-cc16-45a0-a822-8ad189e3e2c2",
+            "time_spent": 60,
+            "active": false,
+            "status":"DONE",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
         }
     }
-    ]
+]

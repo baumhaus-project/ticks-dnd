@@ -1,32 +1,59 @@
 /* eslint-disable no-param-reassign */
-import { action } from 'easy-peasy';
-import * as initData from './data.json';
+import { action, thunk, thunkOn } from 'easy-peasy';
+import { post, put, remove } from './requests';
 
 const model = {
-  data: initData.default,
+  tickets: [],
+  persons: [],
 
-  updateData: action((state, payload) => {
-    state.data = payload;
+  setPersons: action((state, payload) => {
+    state.persons = payload;
+  }),
+  loadPersons: thunk(async (actions) => {
+    return fetch(`${import.meta.env.VITE_API_URL}/api/persons`)
+      .then((res) => res.json())
+      .then((res) => actions.setPersons(res));
   }),
 
-  //   TODO: addColumn: action((state, payload) => {}),
-  //   TODO: deleteColumn: action((state, payload) => {}),
-
-  addCard: action((state, payload) => {
-    const { listId, card } = payload;
-    state.data.find((x) => x.id === listId).cards.push(card);
+  setTickets: action((state, payload) => {
+    state.tickets = payload;
   }),
-  deleteCard: action((state, payload) => {
-    const { listId, cardId } = payload;
-    const { cards } = state.data.find((x) => x.id === listId);
-    const index = cards.findIndex((x) => x.id === cardId);
-
-    if (index !== -1) {
-      cards.splice(index, 1);
-    } else {
-      throw new Error('Card index search failed !');
-    }
+  loadTickets: thunk(async (actions) => {
+    return fetch(`${import.meta.env.VITE_API_URL}/api/tickets`)
+      .then((res) => res.json())
+      .then((res) => actions.setTickets(res));
   }),
+  saveTicket: thunk(async (actions, payload) => {
+    const { ticket } = payload;
+    return post({
+      url: `${import.meta.env.VITE_API_URL}/api/tickets`,
+      payload: ticket,
+    });
+  }),
+  editTicket: thunk(async (actions, payload) => {
+    const { ticket } = payload;
+    return put({
+      url: `${import.meta.env.VITE_API_URL}/api/tickets/${ticket.id}`,
+      payload: ticket,
+    });
+  }),
+  deleteTicket: thunk(async (actions, payload) => {
+    return remove({
+      url: `${import.meta.env.VITE_API_URL}/api/tickets/${payload}`,
+    });
+  }),
+
+  onRequest: thunkOn(
+    (actions) => [actions.saveTicket, actions.editTicket, actions.deleteTicket],
+    async (actions, target) => {
+      actions.loadTickets();
+      if (target.result.ok) {
+        // TODO: Snackbar SUCCESS
+      } else {
+        // TODO: Snackbar FAILURE
+      }
+    },
+  ),
 };
 
 export default model;
