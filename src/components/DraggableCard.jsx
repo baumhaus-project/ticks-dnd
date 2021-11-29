@@ -19,6 +19,7 @@ export default function DraggableCard({ item, index }) {
 
   const inputAttributes = {
     className: readonly ? 'readonly' : 'editable',
+    disabled: readonly,
     readOnly: readonly,
     spellCheck: false,
     type: 'text',
@@ -62,7 +63,6 @@ export default function DraggableCard({ item, index }) {
               name="assignee"
               id="assignee"
               {...inputAttributes}
-              disabled={readonly}
               value={ticket.assignee}
               onChange={(e) =>
                 setTicket((prev) => {
