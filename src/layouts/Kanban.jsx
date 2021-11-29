@@ -10,10 +10,12 @@ import Spinner from '../components/Spinner';
 export default function Kanban() {
   const [loading, setLoading] = useState(true);
   const { tickets } = useStoreState((state) => state);
-  const { loadTickets, setTickets } = useStoreActions((actions) => actions);
+  const { loadTickets, loadPersons, setTickets } = useStoreActions(
+    (actions) => actions,
+  );
 
   useEffect(() => {
-    loadTickets().then(setLoading(false));
+    Promise.allSettled([loadTickets(), loadPersons()]).then(setLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

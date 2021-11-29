@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
-import { useStoreActions } from 'easy-peasy';
+import { useStoreState, useStoreActions } from 'easy-peasy';
 import { PropTypes } from 'prop-types';
 import { Draggable } from 'react-beautiful-dnd';
 
@@ -14,6 +14,7 @@ export default function DraggableCard({ item, index }) {
   const [showDescription, setShowDescription] = useState(false);
   const [ticket, setTicket] = useState(item);
 
+  const { persons } = useStoreState((state) => state);
   const { editTicket } = useStoreActions((actions) => actions);
 
   const inputAttributes = {
@@ -57,17 +58,25 @@ export default function DraggableCard({ item, index }) {
               }
             />
             <label htmlFor="assignee">Assignee</label>
-            <input
-              id="assignee"
+            <select
               name="assignee"
+              id="assignee"
               {...inputAttributes}
+              disabled={readonly}
               value={ticket.assignee}
               onChange={(e) =>
                 setTicket((prev) => {
                   return { ...prev, assignee: e.target.value };
                 })
               }
-            />
+            >
+              {persons.map((x) => (
+                <option key={x.id} value={x.id}>
+                  {x.name}
+                </option>
+              ))}
+            </select>
+
             <div
               display="flex"
               className={showDescription ? 'visible' : 'hidden'}

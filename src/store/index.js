@@ -6,16 +6,23 @@ const model = {
   tickets: [],
   persons: [],
 
+  setPersons: action((state, payload) => {
+    state.persons = payload;
+  }),
+  loadPersons: thunk(async (actions) => {
+    return fetch(`${import.meta.env.VITE_API_URL}/api/persons`)
+      .then((res) => res.json())
+      .then((res) => actions.setPersons(res));
+  }),
+
   setTickets: action((state, payload) => {
     state.tickets = payload;
   }),
-
   loadTickets: thunk(async (actions) => {
     return fetch(`${import.meta.env.VITE_API_URL}/api/tickets`)
       .then((res) => res.json())
       .then((res) => actions.setTickets(res));
   }),
-
   saveTicket: thunk(async (actions, payload) => {
     const { ticket } = payload;
     return post({
@@ -39,8 +46,8 @@ const model = {
   onRequest: thunkOn(
     (actions) => [actions.saveTicket, actions.editTicket, actions.deleteTicket],
     async (actions, target) => {
+      actions.loadTickets();
       if (target.result.ok) {
-        actions.loadTickets();
         // TODO: Snackbar SUCCESS
       } else {
         // TODO: Snackbar FAILURE
