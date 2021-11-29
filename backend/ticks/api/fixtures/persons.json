@@ -1,0 +1,18 @@
+[    
+    {
+        "model": "api.Person",
+        "pk": "d685d5ea-a076-4642-9a66-4178176bd0fd",
+        "fields": {
+            "id": "d685d5ea-a076-4642-9a66-4178176bd0fd",
+            "name": "Steffen"
+        }        
+    },
+    {
+        "model": "api.Person",
+        "pk": "38fbb97a-cc16-45a0-a822-8ad189e3e2c2",
+        "fields": {
+            "id": "38fbb97a-cc16-45a0-a822-8ad189e3e2c2",
+            "name": "Bastian"
+        }          
+    }
+]
