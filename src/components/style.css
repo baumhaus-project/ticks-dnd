@@ -68,23 +68,23 @@ textarea {
   height: 9em;
 }
 
-.card > .visible {
+.card .visible {
   visibility: visible;
 }
-.card > .hidden {
+.card .hidden {
   visibility: hidden;
 }
 
-.card > .editable {
+.card .editable {
   background-color: white;
 }
 
-.card > .editable:focus {
+.card .editable:focus {
   outline: none !important;
   color: var(--color-palette-red);
 }
 
-.card > .readonly:focus {
+.card .readonly:focus {
   outline: none !important;
 }
 

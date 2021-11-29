@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
+import { useStoreActions } from 'easy-peasy';
 import { PropTypes } from 'prop-types';
 import { Draggable } from 'react-beautiful-dnd';
 
@@ -12,6 +13,8 @@ export default function DraggableCard({ item, index }) {
   const [readonly, setReadonly] = useState(true);
   const [showDescription, setShowDescription] = useState(false);
   const [ticket, setTicket] = useState(item);
+
+  const { editTicket } = useStoreActions((actions) => actions);
 
   const inputAttributes = {
     className: readonly ? 'readonly' : 'editable',
@@ -85,10 +88,13 @@ export default function DraggableCard({ item, index }) {
             <ConfirmMenu
               visible={!readonly}
               onCancel={() => {
-                setTicket(item);
                 setReadonly(true);
+                setTicket(item);
               }}
-              onConfirm={() => {}}
+              onConfirm={() => {
+                setReadonly(true);
+                editTicket({ ticket });
+              }}
             />
             <CardMenu item={item} setReadonly={setReadonly} />
             <Toggle onClick={() => setShowDescription((prev) => !prev)} />

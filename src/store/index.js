@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { action, thunk, thunkOn } from 'easy-peasy';
-import { post, remove } from './requests';
+import { post, put, remove } from './requests';
 
 const model = {
   tickets: [],
@@ -23,6 +23,13 @@ const model = {
       payload: ticket,
     });
   }),
+  editTicket: thunk(async (actions, payload) => {
+    const { ticket } = payload;
+    return put({
+      url: `${import.meta.env.VITE_API_URL}/api/tickets/${ticket.id}`,
+      payload: ticket,
+    });
+  }),
   deleteTicket: thunk(async (actions, payload) => {
     return remove({
       url: `${import.meta.env.VITE_API_URL}/api/tickets/${payload}`,
@@ -30,7 +37,7 @@ const model = {
   }),
 
   onRequest: thunkOn(
-    (actions) => [actions.saveTicket, actions.deleteTicket],
+    (actions) => [actions.saveTicket, actions.editTicket, actions.deleteTicket],
     async (actions, target) => {
       if (target.result.ok) {
         actions.loadTickets();
