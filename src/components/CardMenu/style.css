@@ -26,10 +26,11 @@
 }
 
 .dropdown-content > button:hover {
-  background-color: var(--color-palette-mocha);
+  background-color: var(--color-palette-blue);
+  color: var(--color-palette-rosa);
 }
 
-.visible {
+.card-menu-container > .visible {
   display: flex;
 }
 

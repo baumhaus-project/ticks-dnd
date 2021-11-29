@@ -48,14 +48,31 @@ li {
   margin-bottom: 0.15em;
 }
 
-.card > input {
+.card > input,
+textarea {
   color: var(--color-palette-blue);
   background-color: var(--color-palette-rosa);
   height: 1.5em;
   border: none;
   border-radius: 0.5em;
   padding-left: 0.5em;
+  padding-right: 0.5em;
   margin-bottom: 0.5em;
+}
+
+.card > div > textarea {
+  resize: vertical;
+  overflow: auto;
+  display: flex;
+  flex-grow: 1;
+  height: 9em;
+}
+
+.card > .visible {
+  visibility: visible;
+}
+.card > .hidden {
+  visibility: hidden;
 }
 
 .card > .editable {

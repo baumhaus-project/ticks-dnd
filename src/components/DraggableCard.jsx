@@ -5,10 +5,20 @@ import { PropTypes } from 'prop-types';
 import { Draggable } from 'react-beautiful-dnd';
 
 import CardMenu from './CardMenu';
+import Toggle from './Toggle';
+import ConfirmMenu from './ConfirmMenu';
 
 export default function DraggableCard({ item, index }) {
   const [readonly, setReadonly] = useState(true);
+  const [showDescription, setShowDescription] = useState(false);
   const [ticket, setTicket] = useState(item);
+
+  const inputAttributes = {
+    className: readonly ? 'readonly' : 'editable',
+    readOnly: readonly,
+    spellCheck: false,
+    type: 'text',
+  };
 
   return (
     <Draggable key={item.id} draggableId={item.id} index={index}>
@@ -21,12 +31,10 @@ export default function DraggableCard({ item, index }) {
           <form className="card">
             <label htmlFor="title">Title</label>
             <input
-              className={readonly ? 'readonly' : 'editable'}
-              type="text"
               id="title"
               name="title"
+              {...inputAttributes}
               value={ticket.title}
-              readOnly={readonly}
               onChange={(e) =>
                 setTicket((prev) => {
                   return { ...prev, title: e.target.value };
@@ -35,12 +43,10 @@ export default function DraggableCard({ item, index }) {
             />
             <label htmlFor="customer">Customer</label>
             <input
-              className={readonly ? 'readonly' : 'editable'}
-              type="text"
               id="customer"
               name="customer"
+              {...inputAttributes}
               value={ticket.customer}
-              readOnly={readonly}
               onChange={(e) =>
                 setTicket((prev) => {
                   return { ...prev, customer: e.target.value };
@@ -49,19 +55,43 @@ export default function DraggableCard({ item, index }) {
             />
             <label htmlFor="assignee">Assignee</label>
             <input
-              className={readonly ? 'readonly' : 'editable'}
-              type="text"
               id="assignee"
               name="assignee"
+              {...inputAttributes}
               value={ticket.assignee}
-              readOnly={readonly}
               onChange={(e) =>
                 setTicket((prev) => {
                   return { ...prev, assignee: e.target.value };
                 })
               }
             />
+            <div
+              display="flex"
+              className={showDescription ? 'visible' : 'hidden'}
+            >
+              <label htmlFor="description">Description</label>
+              <textarea
+                name="description"
+                id="description"
+                {...inputAttributes}
+                value={ticket.description}
+                onChange={(e) =>
+                  setTicket((prev) => {
+                    return { ...prev, description: e.target.value };
+                  })
+                }
+              />
+            </div>
+            <ConfirmMenu
+              visible={!readonly}
+              onCancel={() => {
+                setTicket(item);
+                setReadonly(true);
+              }}
+              onConfirm={() => {}}
+            />
             <CardMenu item={item} setReadonly={setReadonly} />
+            <Toggle onClick={() => setShowDescription((prev) => !prev)} />
           </form>
         </li>
       )}
