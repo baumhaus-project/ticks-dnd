@@ -29,7 +29,10 @@ API_SERVER = ""
 
 ALLOWED_HOSTS = []
 
+<<<<<<< HEAD:backend/ticks/ticks/settings/base.py
 
+=======
+>>>>>>> 4fe9c6ffa301d02bd1985c50dbaf67050f874ba9:backend/ticks/ticks/settings.py
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',

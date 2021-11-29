@@ -26,6 +26,6 @@ class Ticket(models.Model):
         ("DONE", "Abgeschlossen"),
     )
     status = models.CharField(max_length=20, choices=STATUS, default="OPEN")
-    
+
     def __str__(self):
         return self.title
