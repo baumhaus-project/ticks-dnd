@@ -5,7 +5,7 @@ import classes from './styles/ConfirmMenu.module.css';
 
 export default function ConfirmMenu({ visible, onConfirm, onCancel }) {
   return (
-    <div className={visible ? classes.visible : classes.hidden}>
+    <div className={visible ? 'visible' : 'hidden'}>
       <button className={classes.btn} type="button" onClick={onCancel}>
         cancel
       </button>

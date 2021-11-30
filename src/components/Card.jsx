@@ -73,7 +73,7 @@ export default function Card({ item }) {
 
       <div
         className={`${classes.detailcontainer} ${
-          showDescription ? classes.visible : classes.hidden
+          showDescription ? 'visible' : 'hidden'
         }`}
       >
         <label htmlFor="description">Description</label>

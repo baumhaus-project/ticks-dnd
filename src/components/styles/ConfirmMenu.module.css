@@ -12,11 +12,3 @@
   background-color: var(--color-palette-blue);
   color: var(--color-palette-rosa);
 }
-
-.visible {
-  visibility: visible;
-}
-.hidden {
-  visibility: hidden;
-  height: 0;
-}

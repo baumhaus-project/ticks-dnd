@@ -32,14 +32,6 @@
   color: var(--color-palette-rosa);
 }
 
-.visible {
-  visibility: visible;
-}
-
-.hidden {
-  visibility: hidden;
-}
-
 .menubtn {
   cursor: pointer;
   display: flex;
@@ -50,8 +42,32 @@
 
 .menubtn div {
   background-color: var(--color-palette-blue);
+  animation-direction: alternate;
   border-radius: 50%;
   width: 0.35em;
   height: 0.35em;
   margin: 0.05em;
+}
+
+.menubtn:hover div {
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-name: animation;
+  animation-duration: 1s;
+}
+
+.menubtn:hover div:nth-child(1) {
+  animation-delay: 0.3s;
+}
+.menubtn:hover div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+@keyframes animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.5);
+  }
 }

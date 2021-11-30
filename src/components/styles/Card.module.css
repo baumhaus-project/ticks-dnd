@@ -64,14 +64,6 @@ textarea::-webkit-scrollbar-thumb {
   background: var(--color-palette-mocha);
 }
 
-.visible {
-  visibility: visible;
-}
-.hidden {
-  visibility: hidden;
-  height: 0;
-}
-
 .editable {
   background-color: white;
 }

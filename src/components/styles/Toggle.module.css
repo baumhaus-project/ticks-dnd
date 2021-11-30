@@ -1,4 +1,4 @@
-.description-toggle {
+.toggle {
   background-color: var(--color-palette-rosa);
   cursor: pointer;
   width: 0.5em;
@@ -7,4 +7,8 @@
   right: 0.5em;
   bottom: 0.5em;
   border-radius: 50%;
+}
+
+.toggle:hover {
+  background-color: var(--color-palette-mocha);
 }

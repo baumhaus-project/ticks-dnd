@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
-import { PropTypes, shape } from 'prop-types';
+import { PropTypes } from 'prop-types';
 import { useStoreActions } from 'easy-peasy';
+
+import Timer from './Timer';
 import classes from './styles/CardMenu.module.css';
 
 export default function CardMenu({ item, setReadonly }) {
@@ -20,35 +22,37 @@ export default function CardMenu({ item, setReadonly }) {
         <div />
         <div />
       </div>
-      <div
-        className={`${classes.dropdowncontent} ${
-          open ? classes.visible : classes.hidden
-        }`}
-      >
-        <button
-          className={classes.btn}
-          type="button"
-          onClick={() => setReadonly((prev) => !prev)}
-        >
-          Edit
-        </button>
-        <button
-          className={classes.btn}
-          type="button"
-          onClick={() => deleteTicket(item.id)}
-        >
-          Delete
-        </button>
-        <button className={classes.btn} type="button">
-          Archive
-        </button>
+      <div className={classes.dropdowncontent}>
+        {open ? (
+          <>
+            <button
+              className={classes.btn}
+              type="button"
+              onClick={() => setReadonly((prev) => !prev)}
+            >
+              Edit
+            </button>
+            <button
+              className={classes.btn}
+              type="button"
+              onClick={() => deleteTicket(item.id)}
+            >
+              Delete
+            </button>
+            <button className={classes.btn} type="button">
+              Archive
+            </button>{' '}
+          </>
+        ) : (
+          <Timer />
+        )}
       </div>
     </div>
   );
 }
 
 CardMenu.propTypes = {
-  item: shape({
+  item: PropTypes.shape({
     id: PropTypes.string.isRequired,
   }).isRequired,
   setReadonly: PropTypes.func.isRequired,

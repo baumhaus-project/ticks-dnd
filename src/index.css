@@ -13,6 +13,14 @@ body {
   flex-grow: 1;
 }
 
+.visible {
+  visibility: visible;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
 #root {
   flex-direction: column;
   display: flex;
