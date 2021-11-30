@@ -6,7 +6,7 @@ import { PropTypes } from 'prop-types';
 import { Droppable } from 'react-beautiful-dnd';
 
 import DraggableCard from './DraggableCard';
-import './style.css';
+import classes from './styles/DroppableList.module.css';
 
 export default function DroppableList({ id, title, cards }) {
   const { saveTicket } = useStoreActions((actions) => actions);
@@ -14,11 +14,11 @@ export default function DroppableList({ id, title, cards }) {
   return (
     <Droppable droppableId={id}>
       {(provided) => (
-        <div className="column">
-          <div className="column-header">
-            <h2 className="column-title">{title}</h2>
+        <div className={classes.column}>
+          <div className={classes.header}>
+            <h2 className={classes.title}>{title}</h2>
             <button
-              className="add-btn"
+              className={classes.add}
               type="button"
               onClick={() =>
                 saveTicket({
@@ -38,7 +38,7 @@ export default function DroppableList({ id, title, cards }) {
             </button>
           </div>
           <ul
-            className="list"
+            className={classes.list}
             ref={provided.innerRef}
             {...provided.droppableProps}
           >

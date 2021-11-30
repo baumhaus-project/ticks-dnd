@@ -1,0 +1,86 @@
+.card {
+  z-index: 1;
+  background-color: var(--color-palette-red);
+  box-shadow: 0.25em 0.25em var(--color-palette-blue);
+  margin: 1em;
+  padding: 1em;
+  padding-top: 3em;
+  max-width: 16em;
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.detailcontainer {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  color: var(--color-palette-mocha);
+  padding-left: 0.15em;
+  margin-bottom: 0.15em;
+}
+
+input,
+textarea,
+select {
+  color: var(--color-palette-blue);
+  background-color: var(--color-palette-rosa);
+  height: 1.5em;
+  border: none;
+  border-radius: 0.5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+textarea {
+  resize: vertical;
+  overflow: auto;
+  display: flex;
+  flex-grow: 1;
+  height: 9em;
+}
+
+textarea::-webkit-scrollbar-track {
+  background-color: var(--color-palette-rosa);
+  border-top-right-radius: 0.5em;
+}
+
+textarea::-webkit-scrollbar {
+  width: 1em;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background-color: var(--color-palette-mocha);
+  border: 0.35em solid transparent;
+  background-clip: content-box;
+  border-radius: 1em;
+}
+
+::-webkit-resizer {
+  background: var(--color-palette-mocha);
+}
+
+.visible {
+  visibility: visible;
+}
+.hidden {
+  visibility: hidden;
+  height: 0;
+}
+
+.editable {
+  background-color: white;
+}
+
+.editable:focus {
+  outline: none !important;
+  color: var(--color-palette-red);
+}
+
+.readonly:focus {
+  outline: none !important;
+}
