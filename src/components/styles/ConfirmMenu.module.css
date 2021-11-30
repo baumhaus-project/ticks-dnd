@@ -1,4 +1,4 @@
-.confirm-menu > button {
+.btn {
   background-color: var(--color-palette-rosa);
   color: var(--color-palette-blue);
   cursor: pointer;
@@ -8,7 +8,15 @@
   border: none;
 }
 
-.confirm-menu > button:hover {
+.btn:hover {
   background-color: var(--color-palette-blue);
   color: var(--color-palette-rosa);
+}
+
+.visible {
+  visibility: visible;
+}
+.hidden {
+  visibility: hidden;
+  height: 0;
 }

@@ -2,16 +2,16 @@
 import React, { useState } from 'react';
 import { PropTypes, shape } from 'prop-types';
 import { useStoreActions } from 'easy-peasy';
-import './style.css';
+import classes from './styles/CardMenu.module.css';
 
 export default function CardMenu({ item, setReadonly }) {
   const [open, setOpen] = useState(false);
   const { deleteTicket } = useStoreActions((actions) => actions);
 
   return (
-    <div className="card-menu-container">
+    <div className={classes.container}>
       <div
-        className="card-menu-btn"
+        className={classes.menubtn}
         role="button"
         tabIndex={0}
         onClick={() => setOpen((prev) => !prev)}
@@ -20,14 +20,28 @@ export default function CardMenu({ item, setReadonly }) {
         <div />
         <div />
       </div>
-      <div className={`dropdown-content${open ? ' visible' : ''}`}>
-        <button type="button" onClick={() => setReadonly((prev) => !prev)}>
+      <div
+        className={`${classes.dropdowncontent} ${
+          open ? classes.visible : classes.hidden
+        }`}
+      >
+        <button
+          className={classes.btn}
+          type="button"
+          onClick={() => setReadonly((prev) => !prev)}
+        >
           Edit
         </button>
-        <button type="button" onClick={() => deleteTicket(item.id)}>
+        <button
+          className={classes.btn}
+          type="button"
+          onClick={() => deleteTicket(item.id)}
+        >
           Delete
         </button>
-        <button type="button">Archive</button>
+        <button className={classes.btn} type="button">
+          Archive
+        </button>
       </div>
     </div>
   );

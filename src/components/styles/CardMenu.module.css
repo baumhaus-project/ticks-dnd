@@ -1,4 +1,4 @@
-.card-menu-container {
+.container {
   background-color: var(--color-palette-rosa);
   border-radius: 1em 1em 0em 0em;
   width: 100%;
@@ -9,32 +9,38 @@
   left: 0;
 }
 
-.dropdown-content {
-  display: none;
-  padding: 0.5em;
-  margin-left: 0.25em;
-  z-index: 2;
+.dropdowncontent {
+  margin-left: 0.5em;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
-.dropdown-content > button {
-  background-color: var(--color-palette-rosa);
+.btn {
+  background-color: var(--color-palette-mocha);
   color: var(--color-palette-blue);
   cursor: pointer;
+  display: flex;
+  margin: auto;
   margin-right: 0.5em;
   border-radius: 0.5em;
   border: none;
 }
 
-.dropdown-content > button:hover {
+.btn:hover {
   background-color: var(--color-palette-blue);
   color: var(--color-palette-rosa);
 }
 
-.card-menu-container > .visible {
-  display: flex;
+.visible {
+  visibility: visible;
 }
 
-.card-menu-btn {
+.hidden {
+  visibility: hidden;
+}
+
+.menubtn {
   cursor: pointer;
   display: flex;
   position: absolute;
@@ -42,7 +48,7 @@
   right: 0.85em;
 }
 
-.card-menu-btn div {
+.menubtn div {
   background-color: var(--color-palette-blue);
   border-radius: 50%;
   width: 0.35em;
