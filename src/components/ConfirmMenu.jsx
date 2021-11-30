@@ -1,15 +1,15 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import './style.css';
+import classes from './styles/ConfirmMenu.module.css';
 
 export default function ConfirmMenu({ visible, onConfirm, onCancel }) {
   return (
-    <div className={`confirm-menu ${visible ? 'visible' : 'hidden'}`}>
-      <button type="button" className="cancel-btn" onClick={onCancel}>
+    <div className={visible ? 'visible' : 'hidden'}>
+      <button className={classes.btn} type="button" onClick={onCancel}>
         cancel
       </button>
-      <button type="button" className="confirm-btn" onClick={onConfirm}>
+      <button className={classes.btn} type="button" onClick={onConfirm}>
         confirm
       </button>
     </div>

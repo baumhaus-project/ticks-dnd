@@ -1,0 +1,38 @@
+.column {
+  background-color: var(--color-palette-mocha);
+  color: var(--color-palette-mocha);
+  margin: 1em;
+  padding: 1em;
+  border-radius: 1em;
+}
+
+.header {
+  color: var(--color-palette-blue);
+  display: flex;
+  margin: 0em 1em;
+  align-items: center;
+}
+
+.title {
+  flex-grow: 1;
+}
+
+.list {
+  padding: 0;
+  min-width: 16em;
+}
+
+.add {
+  background-color: var(--color-palette-mocha);
+  color: var(--color-palette-blue);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5em;
+  width: 1em;
+  height: 1em;
+}
+
+.add:hover {
+  transform: scale(1.5);
+}

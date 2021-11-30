@@ -1,9 +1,9 @@
 import React from 'react';
-import './style.css';
+import classes from './styles/Spinner.module.css';
 
 export default function Spinner() {
   return (
-    <div className="lds-ellipsis">
+    <div className={classes.circles}>
       <div />
       <div />
       <div />

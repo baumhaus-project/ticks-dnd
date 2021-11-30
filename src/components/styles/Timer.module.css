@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  position: relative;
+}
+
+.btn {
+  margin: auto;
+}
+.btn g {
+  stroke-width: 25;
+}
+
+.running {
+  color: var(--color-palette-blue);
+}
+.stopped {
+  color: var(--color-palette-mocha);
+}
+
+.running g {
+  stroke: var(--color-palette-blue);
+}
+.stopped g {
+  stroke: var(--color-palette-mocha);
+}
+
+.running g:hover {
+  stroke: var(--color-palette-mocha);
+}
+.stopped g:hover {
+  stroke: var(--color-palette-blue);
+}
+
+.text {
+  margin: auto;
+  margin-left: 0.5em;
+}
